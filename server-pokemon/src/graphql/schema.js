@@ -1,8 +1,9 @@
 import { gql } from 'apollo-server';
+import {} from '../services/pokemonApi'
 
 const rootTypeDefs = gql`
   extend type Query {
-    pokemon: Pokemon!
+    pokemon(id: ID!): Pokemon
   }
 
   type Pokemon {
@@ -14,7 +15,15 @@ const rootTypeDefs = gql`
 
 const rootResolver = {
   Query: {
-    pokemon: () => {
+    pokemon: async (_, { id }) => {
+      try {
+        const response = await getPokemonById(id);
+        console.log(response.data)
+      } catch(err) {
+        console.error('Erro ao buscar dados na API', err)
+        throw new Error('Não foi possível buscar o pokemon escolhido')
+      }
+
       return {
         id: 1,
         nome: 'Bulbassauro',
