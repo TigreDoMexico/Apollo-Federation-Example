@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
 const rootTypeDefs = gql`
-  type Query {
+  extend type Query {
     personagemZelda: Personagem
   }
   type Personagem {
@@ -21,5 +21,5 @@ const rootResolver = {
   },
 };
 
-export const typeDefs = [rootTypeDefs];
-export const resolvers = [rootResolver];
+export const typeDefs = rootTypeDefs;
+export const resolvers = rootResolver;

@@ -1,9 +1,10 @@
 import { gql } from 'apollo-server';
 
 const rootTypeDefs = gql`
-  type Query {
-    pokemon: Pokemon
+  extend type Query {
+    pokemon: Pokemon!
   }
+
   type Pokemon {
     id: ID!
     nome: String!
@@ -23,5 +24,5 @@ const rootResolver = {
   },
 };
 
-export const typeDefs = [rootTypeDefs];
-export const resolvers = [rootResolver];
+export const typeDefs = rootTypeDefs;
+export const resolvers = rootResolver;
