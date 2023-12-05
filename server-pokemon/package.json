@@ -1,0 +1,25 @@
+{
+  "name": "server-pokemon",
+  "version": "1.0.0",
+  "description": "Server para pegar dados de pokemon",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r sucrase/register src/index.js"
+  },
+  "keywords": [
+    "pokemon"
+  ],
+  "author": "David Tigre Moraes",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/federation": "^0.38.1",
+    "apollo-server": "^3.13.0",
+    "axios": "^1.6.2",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "sucrase": "^3.34.0"
+  }
+}
