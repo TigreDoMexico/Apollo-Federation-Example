@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server';
-import {} from '../services/pokemonApi'
+import { getPokemonById } from '../services/pokemonApi'
+import { mapPokemonToSchema } from '../mapper/pokemonMapper'
 
 const rootTypeDefs = gql`
   extend type Query {
@@ -9,7 +10,8 @@ const rootTypeDefs = gql`
   type Pokemon {
     id: ID!
     nome: String!
-    geracao: Int!
+    altura: Int!
+    tipo: String!
   }
 `;
 
@@ -18,17 +20,11 @@ const rootResolver = {
     pokemon: async (_, { id }) => {
       try {
         const response = await getPokemonById(id);
-        console.log(response.data)
+        return mapPokemonToSchema(response.data)
       } catch(err) {
         console.error('Erro ao buscar dados na API', err)
         throw new Error('Não foi possível buscar o pokemon escolhido')
       }
-
-      return {
-        id: 1,
-        nome: 'Bulbassauro',
-        geracao: 1
-      };
     },
   },
 };
